@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export default async function analyzeImage(url,features=['Categories','Description','Tags']) {
-  
-  const endpoint = `https://${process.env.YOUR_AZURE_ENDPOINT}/vision/v3.0/analyze`;
-  const apiKey = process.env.YOUR_AZURE_API_KEY;
+
+  const endpoint = `https://${process.env.REACT_APP_AZURE_ENDPOINT}/vision/v3.0/analyze`;
+  const apiKey = process.env.REACT_APP_AZURE_API_KEY;
 
   try {
     const response = await axios.post(endpoint, {
