@@ -23,3 +23,6 @@ export default async function analyzeImage(url,features=['Categories','Descripti
   }
 }
 
+export function isConfigured () {
+  return process.env.REACT_APP_AZURE_API_KEY && process.env.REACT_APP_AZURE_ENDPOINT;
+}

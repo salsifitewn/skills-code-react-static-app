@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import analyzeImage from './azure-image-analysis';
+import analyzeImage, { isConfigured } from './azure-image-analysis';
 function App() {
   const [imageUrl, setImageUrl] = useState('https://i.imgur.com/ccIeWeW.jpeg');
   const handleChange = (event) => {
@@ -14,7 +14,13 @@ function App() {
     setResults(result);
     setIsAnalyzing(false);
   }
-
+  if (!isConfigured()) {
+    return (
+      <>
+        <p>You need to configure your .env file.</p>
+      </>
+    )
+  }
   return (
     <div className="App">
       <h1>Computer Vision</h1>
@@ -30,11 +36,11 @@ function App() {
     </div>
   );
 }
-function DisplayResults ({ results, imageUrl='' }) {
+function DisplayResults({ results, imageUrl = '' }) {
   return (
     <div>
       <h2>Results</h2>
-      <img src={imageUrl} alt=''/>
+      <img src={imageUrl} alt='' />
       <pre>{JSON.stringify(results, null, 2)}</pre>
     </div>
   )
